@@ -8,12 +8,8 @@ require 'autotuner/agent/agent_factory'
 
 plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
 agent = Autotuner::Agent::AgentFactory.new(plan).create_from_remote
-agent.update 'worker_processes' => 1
-agent.reload
-
-__END__
-tunee = Autotuner::Tunee::Stub.new
-tuner = Autotuner::Tuner.new(tunee, plan)
-tuner.tune(:x)
+tunee = Autotuner::Tunee::Command.new agent, plan
+tuner = Autotuner::Tuner.new tunee, plan
+tuner.tune(:worker_processes)
 
 tuner.result.show

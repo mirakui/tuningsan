@@ -1,8 +1,13 @@
 source :rubygems
 
 gem 'activesupport'
-gem 'debugger'
-gem 'sqlite3'
+
+group :tuner do
+  gem 'sqlite3'
+end
+
+group :agent do
+end
 
 group :example do
   gem 'sinatra'

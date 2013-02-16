@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+$: << File.expand_path('../../lib', __FILE__)
+require 'bundler/setup'
+require 'autotuner/plan'
+require 'autotuner/agent'
+
+plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
+agent = Autotuner::Agent.from_plan(plan)
+agent.start

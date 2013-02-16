@@ -4,14 +4,6 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    columnize (0.3.6)
-    debugger (1.2.2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.5)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.5)
     i18n (0.6.1)
     kgio (2.7.4)
     multi_json (1.6.1)
@@ -35,7 +27,6 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  debugger
   sinatra
   sqlite3
   unicorn

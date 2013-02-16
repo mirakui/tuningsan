@@ -13,6 +13,10 @@ module Autotuner
       @params[key]
     end
 
+    def keys
+      @params.keys
+    end
+
     class Parameter
       def initialize(parameter)
         @param = parameter

@@ -14,7 +14,7 @@ module Autotuner
     def initialize(tunee, plan)
       @tunee = tunee
       @plan = plan
-      @result = Result.new
+      @result = Result.new plan
     end
 
     def tune(param_name)

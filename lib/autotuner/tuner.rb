@@ -6,7 +6,8 @@ module Autotuner
     include Logger
 
     MAX_DEPTH = 100
-    FIRST_STEP_RANGE = 10
+    STEP_RANGE = 10
+    MIN_STEP_RANGE_RATIO = 0.004
 
     attr_reader :result
 
@@ -19,22 +20,27 @@ module Autotuner
     def tune(param_name)
       @evaluate_count = 0
       param = @plan.parameters[param_name]
-      range = (param.min)..(param.max)
-      bench param_name, range
+      @start_range = (param.min)..(param.max)
+      bench param_name, @start_range
     end
 
     private
       def bench(param_name, range, depth=0)
-        step = ((range.max - range.min) / FIRST_STEP_RANGE.to_f).ceil
+        step = ((range.max - range.min) / STEP_RANGE.to_f).ceil
+        step_range_ratio = (range.max - range.min).to_f / (@start_range.max - @start_range.min)
         if step <= 0
           logger.info "[#{depth}] finish benchmarking: step=#{step}"
           return
         elsif depth > MAX_DEPTH
           logger.info "[#{depth}] finish benchmarking: depth=#{depth} > #{MAX_DEPTH}"
           return
+        elsif step_range_ratio < MIN_STEP_RANGE_RATIO
+          logger.info "[#{depth}] finish benchmarking: step_range_ratio=#{step_range_ratio} < #{MIN_STEP_RANGE_RATIO}"
+          return
         end
-        max_index, max_value = nil, nil
+
         logger.info "[#{depth}] start benchmarking [#{range}] (step=#{step})"
+        max_index, max_value = nil, nil
         range.step(step) do |v|
           @tunee.update param_name => v
           actual_value = @tunee.evaluate
@@ -45,7 +51,8 @@ module Autotuner
           @evaluate_count += 1
           logger.debug "[#{depth}] #{@evaluate_count} f(#{param_name}: #{v}) = #{actual_value}"
         end
-        logger.debug "[#{depth}] max: f(#{param_name}: #{max_index}) = #{max_value}"
+        logger.info "[#{depth}] max: f(#{param_name}: #{max_index}) = #{max_value}"
+
         next_range = (max_index - step)..(max_index + step)
         if range == next_range
           logger.info "[#{depth}] finish benchmarking: range converged (#{range})"

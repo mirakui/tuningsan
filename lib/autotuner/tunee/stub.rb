@@ -15,7 +15,7 @@ module Autotuner
 
       private
         def evaluation_function(x)
-          80.0-(1/100.0)*((x-71.5)**2)
+          80.0-(1/1000.0**2)*(x-7123.0)**2
         end
     end
   end

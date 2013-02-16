@@ -6,6 +6,10 @@ module Autotuner
       def initialize(plan)
         super
       end
+
+      def hello
+        Time.now
+      end
     end
   end
 end

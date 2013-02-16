@@ -21,6 +21,10 @@ module Autotuner
       @plan[:agent]
     end
 
+    def [](key)
+      @plan[key]
+    end
+
     def self.load(path)
       Autotuner.logger.debug "Loading plan file: #{path}"
       name = path.match(%r!(\w+)\.yml$!)[1]

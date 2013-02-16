@@ -73,8 +73,8 @@ module Autotuner
           @cache[key] = begin
             @tunee.update param_name => param_value
             @tunee.evaluate.tap do |value|
-              @result.insert param_name, param_value, value
               logger.debug "[#{depth}] #{@evaluate_count} f(#{param_name}: #{param_value}) = #{value}"
+              @result.insert param_name, param_value, value
             end
           end
         end

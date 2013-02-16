@@ -64,7 +64,7 @@ module Autotuner
         end
 
         query += <<-SQL
-  value INTEGER NOT NULL
+  value REAL NOT NULL
   )
         SQL
         query

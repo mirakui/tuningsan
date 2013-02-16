@@ -3,7 +3,7 @@ $: << File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
 require 'autotuner/tuner'
 require 'autotuner/plan'
-require 'autotuner/tunee/stub'
+require 'autotuner/tunee/command'
 require 'autotuner/agent/agent_factory'
 
 plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))

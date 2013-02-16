@@ -5,9 +5,9 @@ parameters:
     max: 100
 agent:
   type: unicorn
-  drb_uri: "druby://127.0.0.1:8787"
+  drb_uri: 'druby://127.0.0.1:8787'
   target_config:
     src: example/config/unicorn.conf.erb
     dst: example/config/unicorn.conf
     reload_command: 'kill -HUP `cat /tmp/unicorn.pid`'
-benchmark_command: "ab -c 1 -n 100 http://127.0.0.1:8080/ 2>/dev/null | grep 'Requests per second' | ruby -ne 'puts $_[/\d+\.\d+/]'"
+benchmark_command: ab -c 1 -n 10 http://127.0.0.1:8080/ 2>/dev/null | grep 'Requests per second' | ruby -ne 'puts $_[/\d+\.\d+/]'

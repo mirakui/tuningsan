@@ -26,5 +26,9 @@ module Autotuner
     def reload
       @target_config.reload
     end
+
+    def update(hash)
+      @target_config.update hash
+    end
   end
 end

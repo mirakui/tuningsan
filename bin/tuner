@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+$: << File.expand_path('../../lib', __FILE__)
+require 'bundler/setup'
+require 'autotuner/tuner'
+require 'autotuner/plan'
+require 'autotuner/tunee/stub'
+
+plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
+tunee = Autotuner::Tunee::Stub.new
+tuner = Autotuner::Tuner.new(tunee, plan)
+tuner.tune(:x)
+
+tuner.result.show

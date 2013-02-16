@@ -1,0 +1,6 @@
+---
+parameters:
+  x:
+    min: 0
+    max: 100
+    type: Integer

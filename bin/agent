@@ -2,8 +2,8 @@
 $: << File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
 require 'autotuner/plan'
-require 'autotuner/agent_factory'
+require 'autotuner/agent/agent_factory'
 
 plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
-agent = Autotuner::AgentFactory.new(plan).create
+agent = Autotuner::Agent::AgentFactory.new(plan).create
 agent.start

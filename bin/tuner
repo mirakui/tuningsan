@@ -4,11 +4,11 @@ require 'bundler/setup'
 require 'autotuner/tuner'
 require 'autotuner/plan'
 require 'autotuner/tunee/stub'
-require 'autotuner/agent_factory'
+require 'autotuner/agent/agent_factory'
 
 plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
-agent = Autotuner::AgentFactory.new(plan).create_from_remote
-p agent.hello
+agent = Autotuner::Agent::AgentFactory.new(plan).create_from_remote
+agent.reload
 
 __END__
 tunee = Autotuner::Tunee::Stub.new

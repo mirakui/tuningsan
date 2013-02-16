@@ -7,3 +7,7 @@ agent:
   type: unicorn
   drb_uri: "druby://127.0.0.1:8787"
   http_port: 8080
+  target_config:
+    src: example/config/unicorn.conf.erb
+    dst: example/config/unicorn.conf
+    reload_command: 'echo reloaded'

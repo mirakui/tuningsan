@@ -16,6 +16,7 @@ module Autotuner
         logger.debug "[command] Updating: #{params.inspect}"
         @params.merge! params
         @agent.update @params
+        @agent.reload
       end
 
       def evaluate

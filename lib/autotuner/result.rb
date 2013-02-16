@@ -10,6 +10,7 @@ module Autotuner
 
     def initialize(plan)
       @plan = plan
+      logger.info "Result table name: #{table_name}"
     end
 
     def insert(param_name, param_value, actual_value)

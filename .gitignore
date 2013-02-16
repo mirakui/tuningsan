@@ -4,3 +4,4 @@ vendor
 tmp
 *.gem
 test.db
+example/config/unicorn.conf

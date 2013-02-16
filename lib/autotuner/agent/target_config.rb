@@ -13,7 +13,7 @@ module Autotuner
         str = hash.map{|k,v| "<% #{k}=#{v.inspect} %>" }.join
         str += src_path.read
         erb = ERB.new str
-        dst_path.open('w') {|f| f.write erb.run }
+        dst_path.open('w+') {|f| f.write erb.result }
       end
 
       def reload
@@ -23,11 +23,11 @@ module Autotuner
       end
 
       def src_path
-        @src_path = Pathname(@config[:src])
+        @src_path ||= Pathname(@config[:src])
       end
 
       def dst_path
-        @dst_path = Pathname(@config[:dst])
+        @dst_path ||= Pathname(@config[:dst])
       end
     end
   end

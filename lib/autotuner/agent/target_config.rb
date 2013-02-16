@@ -1,15 +1,18 @@
 require 'pathname'
 require 'erb'
 require 'autotuner'
+require 'autotuner/logger'
 
 module Autotuner
   class Agent
     class TargetConfig
+      include Logger
       def initialize(target_config)
         @config = target_config
       end
 
       def update(hash)
+        logger.info "Updating #{dst_path} #{hash.inspect}"
         str = hash.map{|k,v| "<% #{k}=#{v.inspect} %>" }.join
         str += src_path.read
         erb = ERB.new str
@@ -18,7 +21,7 @@ module Autotuner
 
       def reload
         cmd = @config[:reload_command]
-        puts "> #{cmd}"
+        logger.info "Reloading: #{cmd}"
         system cmd, err: :out
       end
 

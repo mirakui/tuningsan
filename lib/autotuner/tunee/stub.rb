@@ -15,7 +15,8 @@ module Autotuner
 
       private
         def evaluation_function(x)
-          80.0-(1/1000.0**2)*(x-7123.0)**2 + rand
+          #80.0-(1/1000.0**2)*(x-7123.0)**2 + rand
+          -100-(1/1000.0**2)*(x-7123.0)**2 + rand
         end
     end
   end

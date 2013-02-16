@@ -42,18 +42,16 @@ module Autotuner
         logger.info "[#{depth}] start benchmarking [#{range}] (step=#{step})"
         max_index, max_value = nil, nil
         range.step(step) do |v|
-          @tunee.update param_name => v
-          actual_value = @tunee.evaluate
+          actual_value = evaluate param_name, v, depth
           if !max_value || max_value < actual_value
             max_index, max_value = v, actual_value
           end
-          @result.insert param_name, v, actual_value
-          @evaluate_count += 1
-          logger.debug "[#{depth}] #{@evaluate_count} f(#{param_name}: #{v}) = #{actual_value}"
         end
         logger.info "[#{depth}] max: f(#{param_name}: #{max_index}) = #{max_value}"
 
-        next_range = (max_index - step)..(max_index + step)
+        next_min = [(max_index - step), @start_range.min].max
+        next_max = [(max_index + step), @start_range.max].min
+        next_range = next_min..next_max
         if range == next_range
           logger.info "[#{depth}] finish benchmarking: range converged (#{range})"
           return
@@ -62,6 +60,24 @@ module Autotuner
           return
         end
         bench param_name, next_range, depth + 1
+      end
+
+      def evaluate(param_name, param_value, depth)
+        @cache ||= {}
+        @evaluate_count += 1
+        key = "#{param_name}/#{param_value}"
+        if @cache[key]
+          logger.debug "[#{depth}] <CACHE> f(#{param_name}: #{param_value}) = #{@cache[key]}"
+          @cache[key]
+        else
+          @cache[key] = begin
+            @tunee.update param_name => param_value
+            @tunee.evaluate.tap do |value|
+              @result.insert param_name, param_value, value
+              logger.debug "[#{depth}] #{@evaluate_count} f(#{param_name}: #{param_value}) = #{value}"
+            end
+          end
+        end
       end
   end
 end

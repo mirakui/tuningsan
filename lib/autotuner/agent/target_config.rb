@@ -12,13 +12,8 @@ module Autotuner
       def update(hash)
         str = hash.map{|k,v| "<% #{k}=#{v.inspect} %>" }.join
         str += src_path.read
-
-        puts '---'
-        puts str
-        puts '---'
-
         erb = ERB.new str
-        p erb.run
+        dst_path.open('w') {|f| f.write erb.run }
       end
 
       def reload

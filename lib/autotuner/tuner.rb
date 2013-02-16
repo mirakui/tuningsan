@@ -6,7 +6,7 @@ module Autotuner
     include Logger
 
     MAX_DEPTH = 100
-    STEP_RANGE = 10
+    STEP_RANGE = 7
     MIN_STEP_RANGE_RATIO = 0.004
 
     attr_reader :result

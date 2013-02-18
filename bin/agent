@@ -4,6 +4,12 @@ require 'bundler/setup'
 require 'tuningsan/plan'
 require 'tuningsan/agent/agent_factory'
 
-plan = Tuningsan::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
+plan_path = ARGV.shift
+unless plan_path && File.exist?(plan_path)
+  $stderr.puts "Usage: #{$0} /path/to/your_plan.yml"
+  exit 1
+end
+
+plan = Tuningsan::Plan.load plan_path
 agent = Tuningsan::Agent::AgentFactory.new(plan).create
 agent.start

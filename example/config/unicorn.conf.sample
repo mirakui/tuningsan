@@ -1,0 +1,3 @@
+pid "/tmp/unicorn.pid"
+listen 8080
+worker_processes 1

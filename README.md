@@ -19,7 +19,7 @@ $ unicorn -D -c example/config/unicorn.conf example/config.ru
 $ bin/agent plans/demo_unicorn.yml
 ```
 
-4. run tuningsan tuner (with another terminal)
+4. run tuningsan tuner (with another terminal window)
 ```
 $ bin/tuner plans/demo_unicorn.yml
 ```

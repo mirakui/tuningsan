@@ -22,6 +22,8 @@ module Tuningsan
       param = @plan.parameters[param_name]
       @start_range = (param.min)..(param.max)
       bench param_name, @start_range
+      logger.info "Global optimum: #{param_name}, #{@global_max_index}"
+      @tunee.update param_name => @global_max_value
     end
 
     private
@@ -45,6 +47,7 @@ module Tuningsan
           actual_value = evaluate param_name, v, depth
           if !max_value || max_value < actual_value
             max_index, max_value = v, actual_value
+            @global_max_index = max_index
           end
         end
         logger.info "[#{depth}] max: f(#{param_name}: #{max_index}) = #{max_value}"

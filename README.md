@@ -16,12 +16,12 @@ $ unicorn -D -c example/config/unicorn.conf example/config.ru
 
 3. run tuningsan agent
 ```
-$ bin/tuning plans/demo_unicorn.yml
+$ bin/agent plans/demo_unicorn.yml
 ```
 
-4. run tuningsan tuner
+4. run tuningsan tuner (with another terminal)
 ```
-$ bin/tuning plans/demo_unicorn.yml
+$ bin/tuner plans/demo_unicorn.yml
 ```
 
 5. check out unicorn.conf tuned!

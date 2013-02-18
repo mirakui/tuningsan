@@ -1,7 +1,7 @@
-require 'autotuner/logger'
-require 'autotuner/result'
+require 'tuningsan/logger'
+require 'tuningsan/result'
 
-module Autotuner
+module Tuningsan
   class Tuner
     include Logger
 

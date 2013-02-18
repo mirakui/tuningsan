@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 $: << File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
-require 'autotuner/tuner'
-require 'autotuner/plan'
-require 'autotuner/tunee/command'
-require 'autotuner/agent/agent_factory'
+require 'tuningsan/tuner'
+require 'tuningsan/plan'
+require 'tuningsan/tunee/command'
+require 'tuningsan/agent/agent_factory'
 
-plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
-agent = Autotuner::Agent::AgentFactory.new(plan).create_from_remote
-tunee = Autotuner::Tunee::Command.new agent, plan
-tuner = Autotuner::Tuner.new tunee, plan
+plan = Tuningsan::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
+agent = Tuningsan::Agent::AgentFactory.new(plan).create_from_remote
+tunee = Tuningsan::Tunee::Command.new agent, plan
+tuner = Tuningsan::Tuner.new tunee, plan
 tuner.tune(:worker_processes)
 
 tuner.result.show

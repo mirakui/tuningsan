@@ -1,8 +1,8 @@
 require 'drb/drb'
-require 'autotuner/logger'
-require 'autotuner/agent/target_config'
+require 'tuningsan/logger'
+require 'tuningsan/agent/target_config'
 
-module Autotuner
+module Tuningsan
   class Agent
     include Logger
     attr_reader :target_config

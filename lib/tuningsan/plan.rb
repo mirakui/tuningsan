@@ -1,9 +1,9 @@
 require 'active_support/core_ext'
 require 'yaml'
-require 'autotuner/parameters'
-require 'autotuner/logger'
+require 'tuningsan/parameters'
+require 'tuningsan/logger'
 
-module Autotuner
+module Tuningsan
   class Plan
     include Logger
     attr_reader :name
@@ -26,7 +26,7 @@ module Autotuner
     end
 
     def self.load(path)
-      Autotuner.logger.debug "Loading plan file: #{path}"
+      Tuningsan.logger.debug "Loading plan file: #{path}"
       name = path.match(%r!(\w+)\.yml$!)[1]
       new YAML.load(open(path).read), name
     end

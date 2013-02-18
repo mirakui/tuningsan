@@ -1,6 +1,6 @@
-require 'autotuner/logger'
+require 'tuningsan/logger'
 
-module Autotuner
+module Tuningsan
   module Tunee
     class Command
       include Logger

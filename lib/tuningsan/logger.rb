@@ -1,9 +1,9 @@
 require 'logger'
 
-module Autotuner
+module Tuningsan
   module Logger
     def logger
-      Autotuner.logger
+      Tuningsan.logger
     end
   end
 

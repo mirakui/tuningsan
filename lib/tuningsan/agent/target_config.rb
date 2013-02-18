@@ -1,9 +1,9 @@
 require 'pathname'
 require 'erb'
-require 'autotuner'
-require 'autotuner/logger'
+require 'tuningsan'
+require 'tuningsan/logger'
 
-module Autotuner
+module Tuningsan
   class Agent
     class TargetConfig
       include Logger

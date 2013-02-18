@@ -1,9 +1,9 @@
 require 'stringio'
 require 'pathname'
 require 'sqlite3'
-require 'autotuner/logger'
+require 'tuningsan/logger'
 
-module Autotuner
+module Tuningsan
   class Result
     include Logger
     DB_DIR = Pathname('../../../db').expand_path(__FILE__)

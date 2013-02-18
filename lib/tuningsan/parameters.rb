@@ -1,6 +1,6 @@
 require 'active_support/core_ext'
 
-module Autotuner
+module Tuningsan
   class Parameters
     def initialize(parameters)
       @params = {}.with_indifferent_access

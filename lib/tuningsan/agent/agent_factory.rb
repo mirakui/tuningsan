@@ -1,7 +1,7 @@
 require 'drb/drb'
-require 'autotuner/agent'
+require 'tuningsan/agent'
 
-module Autotuner
+module Tuningsan
   class Agent
     class AgentFactory
       def initialize(plan)

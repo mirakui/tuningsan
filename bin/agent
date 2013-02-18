@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 $: << File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
-require 'autotuner/plan'
-require 'autotuner/agent/agent_factory'
+require 'tuningsan/plan'
+require 'tuningsan/agent/agent_factory'
 
-plan = Autotuner::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
-agent = Autotuner::Agent::AgentFactory.new(plan).create
+plan = Tuningsan::Plan.load(File.expand_path('../../plans/test.yml', __FILE__))
+agent = Tuningsan::Agent::AgentFactory.new(plan).create
 agent.start

@@ -1,4 +1,4 @@
-module Autotuner
+module Tuningsan
   module Tunee
     class Stub
       def initialize
